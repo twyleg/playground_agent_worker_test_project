@@ -19,7 +19,7 @@ setup(
     cmdclass=versioneer.get_cmdclass(),
     author="Torsten Wylegala",
     author_email="mail@twyleg.de",
-    description="A minimal Hello World application using simple-python-app",
+    description="A minimal Hello Planet application using simple-python-app",
     license="GPL 3.0",
     keywords="",
     url="https://github.com/twyleg/playground_agent_worker_test_project",

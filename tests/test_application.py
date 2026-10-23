@@ -23,9 +23,9 @@ from playground_agent_worker_test_project import __version__
         ],
     ],
 )
-def test_hello_world_without_configuration(entry_point, tmp_path):
+def test_hello_planet_without_configuration(entry_point, tmp_path):
     result = subprocess.run(entry_point, cwd=tmp_path, capture_output=True, text=True, check=True)
-    assert result.stdout == "Hello, World!\n"
+    assert result.stdout == "Hello, Planet!\n"
     assert result.stderr == ""
     assert not list(tmp_path.iterdir())
 
@@ -33,7 +33,7 @@ def test_hello_world_without_configuration(entry_point, tmp_path):
 @pytest.mark.parametrize("argument", ["--help", "--version"])
 def test_cli_information(argument, tmp_path):
     result = subprocess.run([sys.executable, "-m", "playground_agent_worker_test_project", argument], cwd=tmp_path, capture_output=True, text=True, check=True)
-    assert "Hello, World!" not in result.stdout
+    assert "Hello, Planet!" not in result.stdout
     assert (__version__ if argument == "--version" else "usage:") in result.stdout
 
 
@@ -67,7 +67,7 @@ def test_configuration_and_logging_example(tmp_path):
         check=True,
     )
     assert "Configured example_parameter_string: custom greeting" in result.stdout
-    assert result.stdout.endswith("Hello, World!\n")
+    assert result.stdout.endswith("Hello, Planet!\n")
     log_files = list(log_dir.glob("*.log"))
     assert log_files
     assert "Configured example_parameter_string: custom greeting" in log_files[0].read_text()

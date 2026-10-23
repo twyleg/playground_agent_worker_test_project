@@ -1,6 +1,6 @@
 # playground_agent_worker_test_project
 
-A minimal Hello World application using `GenericApplication` from
+A minimal Hello Planet application using `GenericApplication` from
 `simple-python-app` (0.4.1), based on
 [template_project_python](https://github.com/twyleg/template_project_python).
 
@@ -16,7 +16,7 @@ python -m playground_agent_worker_test_project
 # Or: playground_agent_worker_test_project
 ```
 
-Both entry points print `Hello, World!` and exit. `--help` and `--version`
+Both entry points print `Hello, Planet!` and exit. `--help` and `--version`
 are also available. The redundant `hello.py` wrapper has been removed.
 Configuration loading and logging initialization are disabled for the default command.
 
@@ -28,7 +28,7 @@ python examples/example.py --config playground_agent_worker_test_project_config.
 
 The example enables GenericApplication's configuration and logging initialization.
 `Application.run()` reads `self.application_config["example_parameter_string"]`
-and logs it with `self.logm.info(...)`, then prints `Hello, World!`.
+and logs it with `self.logm.info(...)`, then prints `Hello, Planet!`.
 The supplied logging configuration writes to the console and a log file.
 `--logging-dir` selects the log directory; `--verbose` enables debug logging.
 
