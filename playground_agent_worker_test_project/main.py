@@ -20,7 +20,7 @@ class Application(GenericApplication):
             # GenericApplication loads the JSON selected by --config or its search paths.
             example_value = self.application_config["example_parameter_string"]
             self.logm.info("Configured example_parameter_string: %s", example_value)
-        print("Hello, World!")
+        print("Hello Planet Earth")
 
 
 def main() -> None:
