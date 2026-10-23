@@ -43,3 +43,31 @@ def test_packaged_resources_and_version():
     assert package.joinpath("py.typed").is_file()
     schema = json.loads(package.joinpath("resources/application_config_schema.json").read_text())
     assert schema["type"] == "object"
+
+
+def test_configuration_and_logging_example(tmp_path):
+    project_root = Path(__file__).resolve().parents[1]
+    config_path = tmp_path / "config.json"
+    config_path.write_text(json.dumps({"example_parameter_string": "custom greeting"}))
+    log_dir = tmp_path / "logs"
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(project_root / "examples/example.py"),
+            "--config",
+            str(config_path),
+            "--logging-config",
+            str(project_root / "logging.yaml"),
+            "--logging-dir",
+            str(log_dir),
+        ],
+        cwd=tmp_path,
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+    assert "Configured example_parameter_string: custom greeting" in result.stdout
+    assert result.stdout.endswith("Hello, World!\n")
+    log_files = list(log_dir.glob("*.log"))
+    assert log_files
+    assert "Configured example_parameter_string: custom greeting" in log_files[0].read_text()

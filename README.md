@@ -18,9 +18,24 @@ python -m playground_agent_worker_test_project
 
 Both entry points print `Hello, World!` and exit. `--help` and `--version`
 are also available. The redundant `hello.py` wrapper has been removed.
-Configuration loading and logging initialization are disabled for this minimal
-application. The template's sample configuration, JSON schema, logging settings,
-and package resources remain available as starting points for future development.
+Configuration loading and logging initialization are disabled for the default command.
+
+To demonstrate both, run from the repository root after installing the project:
+
+```sh
+python examples/example.py --config playground_agent_worker_test_project_config.json --logging-config logging.yaml
+```
+
+The example enables GenericApplication's configuration and logging initialization.
+`Application.run()` reads `self.application_config["example_parameter_string"]`
+and logs it with `self.logm.info(...)`, then prints `Hello, World!`.
+The supplied logging configuration writes to the console and a log file.
+`--logging-dir` selects the log directory; `--verbose` enables debug logging.
+
+`resources/__init__.py` makes resources a regular Python package discovered by
+`find_packages()`. The manifest and `include_package_data=True` include the schema
+and data in distributions. The marker is retained for explicit package discovery;
+it does not by itself include data files.
 
 ## Development
 
@@ -32,7 +47,7 @@ python -m tox -e pyinstaller
 ```
 
 Tox runs pytest, formatting, type checks, and a package/CLI smoke test by default.
-The CI matrix runs these checks on Linux and Windows with Python 3.10–3.12.
+The CI matrix runs these checks on Linux and Windows with Python 3.10–3.14.
 Development dependency lower bounds follow the template and allow newer releases
 for newer Python interpreters.
 
