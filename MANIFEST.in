@@ -1,0 +1,9 @@
+include README.md
+include LICENSE
+include requirements.txt
+graft playground_agent_worker_test_project
+recursive-exclude * *.py[co]
+include versioneer.py
+include playground_agent_worker_test_project/py.typed
+include playground_agent_worker_test_project/_version.py
+include playground_agent_worker_test_project/resources/*.txt
